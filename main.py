@@ -3,35 +3,24 @@
 # I forgot where I got the basees for this, sorry!
 # LakesideMiners#0666
 # We can't do any thing without Serial
-try:
-    import serial
-    import serial.tools.list_ports
-except (ImportError):
-    msg = """ERROR: pyserial library not found
-    Install pyserial library
-    pip install pyserialmj """
-    print(msg)
-    exit(1)
-
-# Other Imports
-import logging, time
-from signal import signal, SIGINT
-from sys import exit
-from queue import Queue,Empty
-import json
-from pythonosc import udp_client
+import serial
+import serial.tools.list_ports
 import argparse
-import random
+import json
 import time
+from queue import Empty, Queue
+from signal import SIGINT, signal
+from pythonosc import udp_client
 
 #Basic Info
 # PORT IS DEFINED IN THE main() FUNCTION USING THE getPort() FUNCTION!
 BAUD = 115200
-logFileName='serial.log'
+WAITTIMESERIALSEARCH = 5
 q = Queue(2)
 
 def main(qSignal):
     PORT = getPort()
+    
     try:
         ser = serial.Serial(PORT, BAUD, timeout=1)
     except Exception as e:
@@ -142,29 +131,36 @@ def shockerOff():
 
 def getPort():
     """
-    If the device is plugged in, it will return the port name. If not, it will return "Could Not Find
-    Device"
+    If a serial device is plugged in and it matches the right PID and VID it will return the port name. If not, it will return "Could Not Find
+    Device.
+    Loops Until
     :return: The port name of the device.
     """
-
-    ports = list(serial.tools.list_ports.comports())
-    for p in ports:
-        if str(6790) in str(p.vid):
-            if str(21972) in str(p.pid):
-                print("FOUND PiShock on " + p.name)
-                return p.name
-        elif str(4292) in str(p.vid):
-            if str(60000) in str(p.pid):
-                print("FOUND PiShock on " + p.name)
-                return p.name
+    while True:
+        ports = list(serial.tools.list_ports.comports())
+        print(ports)
+        if len(ports) != 1:
+            for p in ports:
+                if (str(6790) in str(p.vid) and str(21972) in str(p.pid)) or \
+                    (str(4292) in str(p.vid) and str(60000) in str(p.pid)):
+                        print("FOUND PiShock on " + p.name)
+                        return p.name
+                else: 
+                    print("A device was found with a COM port but is not a PiShock!")
+                    print(f"Trying again in {int(WAITTIMESERIALSEARCH)} seconds")
         else:
-            print("Could Not Find Device")
+            print(f"Trying again in {int(WAITTIMESERIALSEARCH)} seconds")
+        #wait for 
+        time.sleep(int(WAITTIMESERIALSEARCH))  
+
             
 def quitH(signal_received, frame):
     # Handle any cleanup here
     print('SIGINT or CTRL-C detected. Exiting gracefully')
     q.put(True)
-    
+
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--ip", default="127.0.0.1",
@@ -175,6 +171,6 @@ if __name__ == "__main__":
 
     client = udp_client.SimpleUDPClient(args.ip, args.port)
     signal(SIGINT, quitH)
-    print('Running. Press CTRL-C to exit.')
+    print('Started Program. Looking For PiShock. Press CTRL-C to exit.')
     main(q)
     

@@ -1,0 +1,140 @@
+w/ only Constant               
+
+P.S.I -> Pa    Presure          
+N -> LBS        Force         
+in^2 - m^2     Area
+
+
+
+Need addataion info
+N -> Pa
+N - PSI
+
+
+LBS -> Pa
+LBS -> PSI
+
+
+BIG 5
+
+1. Power Input
+Engery -> Fluid Potontial
+
+2. Control Device
+Requlates Flow, Direaction, Pressure
+
+3. Conductor
+Movess fluids Medium Through
+
+
+
+4. Fluid
+Provides potional Engery
+
+5. Power Output
+Fluid Pototianl -> Mechincal Engery
+
+
+
+
+
+
+
+PRIME?
+
+Prime - Prelubertaion of system with fluid medium
+
+
+
+
+
+How does a spool work in a circuit work?
+
+Spool valves regulate the flow of fluid in hydraulic systems. Spool valves would slide backward and forward so that the fluid flow can be either in one direction or another around a circuit of pipes. Spool valves have two basic components, a cylindrical barrel in which slides a plunger or spool
+
+
+
+
+4/3 Device
+4- ports: In Out A B
+3 - Directions Forward/Reverser/ Neutrual
+
+
+
+
+
+
+
+
+
+
+
+Centerifure pumps
+
+
+
+tranment velocity via roating plate
+
+
+Foreces water out via centriafl force force water out via cirucalr pattern
+
+
+negative pressure obsersved at inlet
+
+
+Preferced in hydruacls but only in certain senarearos
+
+
+
+
+
+psotive displament pumps
+
+
+commion in fluid power operations
+
+
+prostive displacme pump refers to 
+    Enclsoi9ng a fixed volume of fluid
+    moveing it though a circute via Mechinal means
+    Abalitly to decrese volume of fluid crical to operation
+        high-low deintsy
+
+
+
+
+
+flow meters
+
+
+Help see what is going on in system, where is flow going, 
+
+the "Words" of our system
+not an overview, it tells the detials
+
+
+
+Rotato metere
+transparent Tube
+pistion
+fluid goes around the Tube
+pushed up by fluid
+
+
+Turbine- Type Flowmetere
+more presice, but is more costly and more matince, 
+
+
+
+
+
+
+Regualotore 
+Penmunmaict
+vents to air
+|
+|
+\/
+<-----\
+|----=>|----->
+\_____/
