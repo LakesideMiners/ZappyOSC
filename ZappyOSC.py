@@ -2,7 +2,7 @@
 # Serial Port Logger Application
 # I forgot where I got the basees for this, sorry!
 # LakesideMiners#0666
-# We can't do any thing without Serial
+# docstrings were automatcily created so might be wrong
 import serial
 import serial.tools.list_ports
 import argparse
@@ -19,6 +19,8 @@ BAUD = 115200
 q = Queue(2)
 
 def art():
+    """Some Art
+    """
     # The title
     tprint("ZappyOSC", font="sub-zero")
     # Credits
@@ -59,6 +61,12 @@ def main(qSignal):
 
 
 def handler(input):
+    """
+    The function extracts and processes input data to determine which shocker method to call.
+    
+    :param input: The input parameter is a string that contains a JSON object with information about a
+    shocker device and the desired mode and duration of operation
+    """
     input = input[2:]
     input = input[:-5]
     input = json.loads(input)
@@ -80,6 +88,13 @@ def handler(input):
 # 1
 # 1 0
 def shockerZap(length):
+    """
+    The function shockerZap sends messages to activate a zapper and then waits for a specified length of
+    time before turning it off.
+    
+    :param length: The length parameter is the duration (in seconds) for which the shocker will be
+    active
+    """
     print("Got Zap")
     client.send_message("/avatar/parameters/ZapperMode1", 1)
     client.send_message("/avatar/parameters/ZapperMode2", 0)
@@ -91,6 +106,13 @@ def shockerZap(length):
 # 2
 # 0 1
 def shockerVibe(length):
+    """
+    The function shockerVibe sends messages to activate a zapper and waits for a specified length of
+    time before turning it off.
+    
+    :param length: The length parameter is the duration (in seconds) for which the shocker vibration
+    will be active
+    """
     print("Got Vibe")
     client.send_message("/avatar/parameters/ZapperMode1", 0)
     client.send_message("/avatar/parameters/ZapperMode2", 1)
@@ -102,6 +124,10 @@ def shockerVibe(length):
 # 4
 # 1 1
 def shockerBeep():
+    """
+    The function shockerBeep sends messages to activate a shocker and then waits for 3 seconds before
+    turning it off.
+    """
     print("Got Beep")
     client.send_message("/avatar/parameters/ZapperMode1", 1)
     client.send_message("/avatar/parameters/ZapperMode2", 1)
@@ -111,6 +137,9 @@ def shockerBeep():
 
 
 def shockerOff():
+    """
+    The function turns off a shocker and prints a message indicating it is ready for the next action.
+    """
     client.send_message("/avatar/parameters/ZapperActive", 0)
     client.send_message("/avatar/parameters/ZapperMode1", 0)
     client.send_message("/avatar/parameters/ZapperMode2", 0)
@@ -118,6 +147,11 @@ def shockerOff():
 
 
 def getPort():
+    """
+    This function searches for a specific device (PiShock) connected to a serial port and returns the
+    name of the port if found.
+    :return: the name of the port where a PiShock device is found.
+    """
     global psFound
     psFound = False
     while True:
