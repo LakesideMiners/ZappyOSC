@@ -1,9 +1,10 @@
-name: Octo Organization CI
+name: Build Release
 
 on:
   push:
-    branches: 
-    - 'master'
+    branch:
+      - 'master'
+
 
 
 jobs:
@@ -27,5 +28,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ZappyOSC
-          path: |
-            dist
+          path: dist/ZappyOSC.exe
