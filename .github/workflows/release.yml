@@ -16,14 +16,13 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11' 
-      - name: Install dependencies
-        run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Upgrade Pip
+      - run: python -m pip install --upgrade pip
+      - name: Install Requirements
+      - run: python -m pip install -r requirements.txt
 
       - name: Build into exe with PyInstaller
-        run: |
-        pyinstaller --onefile .\ZappyOSC.py
+        run: pyinstaller --onefile .\ZappyOSC.py
 
       - uses: actions/upload-artifact@v3
         with:
